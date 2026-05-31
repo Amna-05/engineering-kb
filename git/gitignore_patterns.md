@@ -1,43 +1,37 @@
-### ============================================================
+# .gitignore Reference
 
-### .gitignore Master Reference
+> Master reference for my stack: Python · FastAPI · Next.js · Docker · PostgreSQL
+> Copy relevant sections into each project's root as `.gitignore`
 
-### Stack: Python · FastAPI · Next.js · Docker · PostgreSQL
+---
 
-### Copy what you need into your project root
+## Full Template
 
-### ============================================================
-
-### ------------------------------------------------------------
-
-### SECRETS — ALWAYS IGNORE (non-negotiable)
-
-### ------------------------------------------------------------
-
+```gitignore
+# ============================================================
+# SECRETS — ALWAYS IGNORE (non-negotiable)
+# ============================================================
 .env
-.env._
-!.env.example ### keep the example template
-_.pem
-_.key
-_.p12
-_.pfx
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
 secrets/
 credentials/
-service-account_.json
+service-account*.json
 
-### ------------------------------------------------------------
-
-### PYTHON / FASTAPI
-
-### ------------------------------------------------------------
-
-**pycache**/
-_.py[cod]
-_.pyo
-_.pyd
+# ============================================================
+# PYTHON / FASTAPI
+# ============================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 .Python
-_.egg-info/
-\*.egg
+*.egg-info/
+*.egg
 dist/
 build/
 .venv/
@@ -46,108 +40,86 @@ env/
 ENV/
 .python-version
 
-### Testing
-
+# Testing
 .pytest_cache/
 .coverage
 coverage.xml
 htmlcov/
 .tox/
 
-### Alembic (keep versions folder, ignore local db state)
-
-### alembic/versions/ ← DO NOT ignore this
-
-### Type checking
-
+# Type checking / linting
 .mypy_cache/
 .ruff_cache/
 
-### ------------------------------------------------------------
-
-### NODE / NEXT.JS
-
-### ------------------------------------------------------------
-
-node*modules/
+# ============================================================
+# NODE / NEXT.JS
+# ============================================================
+node_modules/
 .next/
 .nuxt/
 out/
 dist/
 build/
 *.log
-npm-debug.log\_
+npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log\*
+.pnpm-debug.log*
 .vercel
 .turbo
 
-### ------------------------------------------------------------
-
-### DOCKER
-
-### ------------------------------------------------------------
-
+# ============================================================
+# DOCKER
+# ============================================================
 .docker/
-docker-compose.override.yml ### local overrides only
+docker-compose.override.yml
 
-### ------------------------------------------------------------
-
-### DATABASE
-
-### ------------------------------------------------------------
-
-_.sqlite
-_.sqlite3
-\*.db
+# ============================================================
+# DATABASE
+# ============================================================
+*.sqlite
+*.sqlite3
+*.db
 postgres-data/
 pgdata/
 
-### ------------------------------------------------------------
-
-### OS
-
-### ------------------------------------------------------------
-
-.DS*Store
+# ============================================================
+# OS
+# ============================================================
+.DS_Store
 Thumbs.db
 desktop.ini
 *.swp
-\_.swo
-\*~
+*.swo
+*~
 
-### ------------------------------------------------------------
-
-### IDE / EDITORS
-
-### ------------------------------------------------------------
-
+# ============================================================
+# IDE / EDITORS
+# ============================================================
 .vscode/
-!.vscode/extensions.json ### keep recommended extensions
+!.vscode/extensions.json
 .idea/
-_.iml
-_.sublime-project
-\*.sublime-workspace
+*.iml
+*.sublime-project
+*.sublime-workspace
 
-### ------------------------------------------------------------
-
-### LOGS
-
-### ------------------------------------------------------------
-
+# ============================================================
+# LOGS & TEMP
+# ============================================================
 logs/
-_.log
-_.log.\*
-
-### ------------------------------------------------------------
-
-### MISC
-
-### ------------------------------------------------------------
-
-.cache/
+*.log
+*.log.*
 tmp/
 temp/
-uploads/ ### user uploaded files
-media/ ### if storing locally
+uploads/
+media/
+```
+
+---
+
+## Notes
+
+- Always commit `.env.example` — it tells teammates what vars are needed
+- Never commit `postgres-data/` or any bind mount data folder
+- `!.vscode/extensions.json` keeps the recommended extensions file (useful for teams)
+- Add `docker-compose.override.yml` to gitignore — use it for local dev overrides only

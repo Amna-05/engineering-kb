@@ -1,43 +1,38 @@
+# .dockerignore Reference
+
+> Place this file at project root alongside your Dockerfile.
+> Goal: smaller image, faster builds, no secrets ever leaking into layers.
+
+---
+
+## Full Template
+
+```dockerignore
 # ============================================================
-
-### .dockerignore Master Reference
-
-### Place this file at project root alongside Dockerfile
-
-### Goal: keep image small, never leak secrets into image
-
-### SECRETS — NEVER goes into an image
-
-### ------------------------------------------------------------
-
+# SECRETS — NEVER goes into an image
+# ============================================================
 .env
-.env._
+.env.*
 !.env.example
-_.pem
-\*.key
+*.pem
+*.key
 secrets/
 credentials/
 
-### ------------------------------------------------------------
-
-### GIT
-
-### ------------------------------------------------------------
-
+# ============================================================
+# GIT
+# ============================================================
 .git/
 .gitignore
 .gitattributes
 
-### ------------------------------------------------------------
-
-### PYTHON
-
-# ------------------------------------------------------------
-
-**pycache**/
-_.pyc
-_.pyo
-_.pyd
+# ============================================================
+# PYTHON
+# ============================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 .venv/
 venv/
 env/
@@ -46,101 +41,72 @@ env/
 htmlcov/
 .mypy_cache/
 .ruff_cache/
-_.egg-info/
+*.egg-info/
 dist/
 build/
 
-# ------------------------------------------------------------
-
+# ============================================================
 # NODE / NEXT.JS
-
-# ------------------------------------------------------------
-
-node*modules/
+# ============================================================
+node_modules/
 .next/
 out/
 *.log
-npm-debug.log\_
+npm-debug.log*
 
-# ------------------------------------------------------------
-
-# DOCKER (don't copy docker files into themselves)
-
-# ------------------------------------------------------------
-
+# ============================================================
+# DOCKER FILES (don't copy into themselves)
+# ============================================================
 Dockerfile
-Dockerfile._
-docker-compose_.yml
+Dockerfile.*
+docker-compose*.yml
 .dockerignore
 
-# ------------------------------------------------------------
-
+# ============================================================
 # CI/CD
-
-# ------------------------------------------------------------
-
+# ============================================================
 .gitlab-ci.yml
 .github/
 .gitlab/
 
-# ------------------------------------------------------------
-
-# DOCS & README
-
-# ------------------------------------------------------------
-
+# ============================================================
+# DOCS
+# ============================================================
 README.md
 docs/
-\*.md
+*.md
 
-# ------------------------------------------------------------
-
+# ============================================================
 # IDE / OS
-
-# ------------------------------------------------------------
-
+# ============================================================
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
-\*.swp
+*.swp
 
-# ------------------------------------------------------------
-
-# TESTS (don't ship tests in production image)
-
-# ------------------------------------------------------------
-
+# ============================================================
+# TESTS (don't ship in production image)
+# ============================================================
 tests/
 test/
-**tests**/
-_.test.py
-_.spec.ts
+__tests__/
 coverage/
 
-# ------------------------------------------------------------
-
+# ============================================================
 # LOGS & TEMP
-
-# ------------------------------------------------------------
-
+# ============================================================
 logs/
-\*.log
+*.log
 tmp/
 temp/
+```
 
-# ============================================================
+---
 
-# QUICK NOTES
+## Key Rules
 
-# ============================================================
-
-# - .dockerignore works like .gitignore but for Docker build context
-
-# - Smaller context = faster builds
-
-# - Never let .env or keys get into an image layer (even if deleted later,
-
-# they exist in the layer history)
-
-# - Always have .env.example committed so team knows what vars are needed
+- Even if you `RUN rm secret.env` in a later layer, it still exists in the earlier layer's history — always exclude upfront
+- `node_modules/` must be excluded — always reinstall inside the container
+- Excluding `tests/` keeps production images lean
+- `.git/` exclusion alone can save 50-100MB on older repos

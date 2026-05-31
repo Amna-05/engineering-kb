@@ -1,22 +1,22 @@
-# ============================================================
+### ============================================================
 
-# .gitignore Master Reference
+### .gitignore Master Reference
 
-# Stack: Python · FastAPI · Next.js · Docker · PostgreSQL
+### Stack: Python · FastAPI · Next.js · Docker · PostgreSQL
 
-# Copy what you need into your project root
+### Copy what you need into your project root
 
-# ============================================================
+### ============================================================
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# SECRETS — ALWAYS IGNORE (non-negotiable)
+### SECRETS — ALWAYS IGNORE (non-negotiable)
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
 .env
 .env._
-!.env.example # keep the example template
+!.env.example ### keep the example template
 _.pem
 _.key
 _.p12
@@ -25,11 +25,11 @@ secrets/
 credentials/
 service-account_.json
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# PYTHON / FASTAPI
+### PYTHON / FASTAPI
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
 **pycache**/
 _.py[cod]
@@ -46,7 +46,7 @@ env/
 ENV/
 .python-version
 
-# Testing
+### Testing
 
 .pytest_cache/
 .coverage
@@ -54,49 +54,49 @@ coverage.xml
 htmlcov/
 .tox/
 
-# Alembic (keep versions folder, ignore local db state)
+### Alembic (keep versions folder, ignore local db state)
 
-# alembic/versions/ ← DO NOT ignore this
+### alembic/versions/ ← DO NOT ignore this
 
-# Type checking
+### Type checking
 
 .mypy_cache/
 .ruff_cache/
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# NODE / NEXT.JS
+### NODE / NEXT.JS
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-node_modules/
+node*modules/
 .next/
 .nuxt/
 out/
 dist/
 build/
-_.log
-npm-debug.log_
+*.log
+npm-debug.log\_
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log\*
 .vercel
 .turbo
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# DOCKER
+### DOCKER
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
 .docker/
-docker-compose.override.yml # local overrides only
+docker-compose.override.yml ### local overrides only
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# DATABASE
+### DATABASE
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
 _.sqlite
 _.sqlite3
@@ -104,50 +104,50 @@ _.sqlite3
 postgres-data/
 pgdata/
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# OS
+### OS
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-.DS_Store
+.DS*Store
 Thumbs.db
 desktop.ini
-_.swp
-_.swo
+*.swp
+\_.swo
 \*~
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# IDE / EDITORS
+### IDE / EDITORS
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
 .vscode/
-!.vscode/extensions.json # keep recommended extensions
+!.vscode/extensions.json ### keep recommended extensions
 .idea/
 _.iml
 _.sublime-project
 \*.sublime-workspace
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# LOGS
+### LOGS
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
 logs/
 _.log
 _.log.\*
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
-# MISC
+### MISC
 
-# ------------------------------------------------------------
+### ------------------------------------------------------------
 
 .cache/
 tmp/
 temp/
-uploads/ # user uploaded files
-media/ # if storing locally
+uploads/ ### user uploaded files
+media/ ### if storing locally
